@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = function Layout({ title, children }) {
+module.exports = function Layout({ title, children, authUser }) {
   return (
     <html lang="en">
       <head>
@@ -9,29 +9,48 @@ module.exports = function Layout({ title, children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
-        <script defer src="/js/bootstrap.bundle.min.js"></script>
-        <script defer src="/js/application.js"></script>
+        <script defer src="/js/bootstrap.bundle.min.js" />
+        <script defer src="/js/application.js" />
         <title>{title}</title>
       </head>
       <body>
-        <div class="collapse" id="navbarToggleExternalContent">
-          <div class="bg-dark p-4">
-            <h5 class="text-white h4">
-              <a href="/home">Home</a>
-            </h5>
-            <span class="text-muted">
-              <a href="/registration">Sign in</a>
-            </span>
-            <br />
-            <span class="text-muted">
-              <a href="/login">Log in</a>
-            </span>
-          </div>
+        <div className="collapse" id="navbarToggleExternalContent">
+
+          {authUser ? (
+            <div className="bg-dark p-4">
+              {' '}
+              <h5 className="text-white h4">
+                <a href="/home">Home</a>
+              </h5>
+              <span className="text-muted">
+                <a href="/favorites">Favorites</a>
+              </span>
+              <br />
+              <span className="text-muted">
+                <a href="/logout">Log out</a>
+              </span>
+            </div>
+          ) : (
+            <div className="bg-dark p-4">
+              {' '}
+              <h5 className="text-white h4">
+                <a href="/home">Home</a>
+              </h5>
+              <span className="text-muted">
+                <a href="/registration">Sign in</a>
+              </span>
+              <br />
+              <span className="text-muted">
+                <a href="/login">Log in</a>
+              </span>
+            </div>
+          )}
+
         </div>
-        <nav class="navbar navbar-dark bg-dark">
-          <div class="container-fluid">
+        <nav className="navbar navbar-dark bg-dark">
+          <div className="container-fluid">
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarToggleExternalContent"
@@ -39,7 +58,7 @@ module.exports = function Layout({ title, children }) {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon" />
             </button>
           </div>
         </nav>

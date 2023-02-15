@@ -13,15 +13,15 @@ module.exports = function Registration() {
           className="mt-5"
         >
           <div className="mb-3">
-            <div className="mb-3">
-              <input
-                type="text"
-                name="name"
-                autoFocus
-                placeholder="Name"
-                className="form-control"
-              />
-            </div>
+            <input
+              type="text"
+              name="name"
+              autoFocus
+              placeholder="Name"
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
             <input
               type="email"
               name="email"
@@ -32,7 +32,7 @@ module.exports = function Registration() {
           <div className="mb-3">
             <input
               type="password"
-              name="password"
+              name="passwordOne"
               placeholder="Password"
               className="form-control"
             />
@@ -40,7 +40,7 @@ module.exports = function Registration() {
           <div className="mb-3">
             <input
               type="password"
-              name="repeatPassword"
+              name="passwordTwo"
               placeholder="Repeat password"
               className="form-control"
             />

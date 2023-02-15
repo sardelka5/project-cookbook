@@ -2,9 +2,9 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function AllCards({ arrayRecipes }) {
+module.exports = function AllCards({ arrayRecipes, authUser }) {
   return (
-    <Layout>
+    <Layout authUser={authUser}>
       <div className="container cards-container">
         <h1 className="mt-5">All recipes here:</h1>
         <ul id="list" className="list-group mt-5">

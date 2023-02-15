@@ -3,8 +3,9 @@ const AllCards = require('../../views/AllCards');
 const { Card } = require('../../db/models');
 
 router.get('/', async (req, res) => {
+  const { user } = res.app.locals;
   const arrayRecipes = await Card.findAll({ raw: true });
-  res.status(200).renderComponent(AllCards, { arrayRecipes });
+  res.status(200).renderComponent(AllCards, { arrayRecipes, authUser: user });
 });
 
 module.exports = router;

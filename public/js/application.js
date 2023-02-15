@@ -36,7 +36,7 @@ if (regoForm) {
   regoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, name, email, password } = event.target;
+    const { method, action, name, email, passwordOne, passwordTwo } = event.target;
 
     const res = await fetch(action, {
       method,
@@ -46,7 +46,8 @@ if (regoForm) {
       body: JSON.stringify({
         name: name.value,
         email: email.value,
-        password: password.value,
+        passwordOne: passwordOne.value,
+        passwordTwo: passwordTwo.value,
       }),
     });
 

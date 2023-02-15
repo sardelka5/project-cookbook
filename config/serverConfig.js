@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const ssr = require('../middleware/ssr');
 const sessionConfig = require('./sessionConfig');
-const getUser = require('../middleware/getUser')
+const getUser = require('../middleware/getUser');
 
 const config = (app) => {
   app.use(express.json());
