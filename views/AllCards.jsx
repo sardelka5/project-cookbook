@@ -2,9 +2,9 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-module.exports = function AllCards({ arrayRecipes }) {
+module.exports = function AllCards({ arrayRecipes, authUser }) {
   return (
-    <Layout>
+    <Layout authUser={authUser}>
       <div className="container cards-container" id="blyodo">
         {arrayRecipes.length ? (
           arrayRecipes.map((recipe) => (
