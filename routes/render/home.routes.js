@@ -27,6 +27,10 @@ const AllCards = require('../../views/AllCards');
 // module.exports = router;
 
 router.get('/', async (req, res) => {
+//! проверить всем!
+  const { user } = res.app.locals;
+  const arrayRecipes = await Card.findAll({ raw: true });
+
 
   const arrBlyodo = [];
   for (let i = 0; i < 8; i++) {
@@ -48,7 +52,7 @@ router.get('/', async (req, res) => {
   };
   return obj;
   })
-  res.status(200).renderComponent(AllCards, { arrayRecipes: result });
+  res.status(200).renderComponent(AllCards, { arrayRecipes: result, authUser: user});
 });
 
 

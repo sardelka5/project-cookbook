@@ -1,7 +1,7 @@
 const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const Login = require('../../views/Login');
 const { User } = require('../../db/models');
-const bcrypt = require('bcrypt');
 
 router
   .route('/')
@@ -18,10 +18,10 @@ router
         req.session.userId = candidate.id;
         res.status(200).json({ message: 'ok' });
       } else {
-        res.status(200).json({ message: 'Email или пароль введены неверно' });
+        res.status(200).json({ message: 'Wrong email or password ' });
       }
     } else {
-      res.status(400).json({ message: 'Введите данные' });
+      res.status(400).json({ message: 'Please fill in email and password' });
     }
   });
 

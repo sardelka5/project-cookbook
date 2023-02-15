@@ -1,5 +1,6 @@
 const regoForm = document.querySelector('#form-rego');
 const logoForm = document.querySelector('#form-logo');
+const errorMessage = document.querySelector('#error')
 const random = document.querySelector('#random');
 const seafood = document.querySelector('#seafood');
 
@@ -25,9 +26,9 @@ if (logoForm) {
     if (data.message === 'ok') {
       window.location.assign('/home');
     } else {
-      const html = `<div>${data.message}</div>`;
-      logoForm.insertAdjacentHTML('beforeend', html);
-
+      // const html = `<div>${data.message}</div>`;
+      // logoForm.insertAdjacentHTML('beforeend', html);
+      errorMessage.innerText = data.message;
       //! можно добавить во вьюшку див и менять там иннерХТМЛ
     }
   });
@@ -37,7 +38,7 @@ if (regoForm) {
   regoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, name, email, password } = event.target;
+    const { method, action, name, email, passwordOne, passwordTwo } = event.target;
 
     const res = await fetch(action, {
       method,
@@ -47,7 +48,8 @@ if (regoForm) {
       body: JSON.stringify({
         name: name.value,
         email: email.value,
-        password: password.value,
+        passwordOne: passwordOne.value,
+        passwordTwo: passwordTwo.value,
       }),
     });
 
@@ -56,8 +58,9 @@ if (regoForm) {
     if (data.message === 'ok') {
       window.location.assign('/home');
     } else {
-      const html = `<div>${data.message}</div>`;
-      regoForm.insertAdjacentHTML('beforeend', html);
+      // const html = `<div>${data.message}</div>`;
+      // regoForm.insertAdjacentHTML('beforeend', html);
+      errorMessage.innerText = data.message;
 
       //! можно добавить во вьюшку див и менять там иннерХТМЛ
     }
