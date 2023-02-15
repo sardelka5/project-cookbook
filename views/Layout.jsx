@@ -18,31 +18,32 @@ module.exports = function Layout({ title, children, authUser }) {
         <div className="collapse" id="navbarToggleExternalContent">
           {authUser ? (
             <div className="bg-dark p-4">
-              {' '}
+              <h5 className="text-white h3">
+                Hello,
+                {' '}
+                {`${authUser.name}`}
+              </h5>
               <h5 className="text-white h4">
                 <a href="/home">Home</a>
               </h5>
-              <span className="text-muted">
+              <h5 className="text-white h5">
                 <a href="/favorites">Favorites</a>
-              </span>
-              <br />
-              <span className="text-muted">
+              </h5>
+              <h5 className="text-white h5">
                 <a href="/logout">Log out</a>
-              </span>
+              </h5>
             </div>
           ) : (
             <div className="bg-dark p-4">
-              {' '}
               <h5 className="text-white h4">
                 <a href="/home">Home</a>
               </h5>
-              <span className="text-muted">
-                <a href="/registration">Sign in</a>
-              </span>
-              <br />
-              <span className="text-muted">
+              <h5 className="text-white h5">
+                <a href="/registration">Sign up</a>
+              </h5>
+              <h5 className="text-white h5">
                 <a href="/login">Log in</a>
-              </span>
+              </h5>
             </div>
           )}
         </div>
