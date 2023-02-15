@@ -1,5 +1,7 @@
 const regoForm = document.querySelector('#form-rego');
 const logoForm = document.querySelector('#form-logo');
+const random = document.querySelector('#random');
+const seafood = document.querySelector('#seafood');
 
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
@@ -48,6 +50,27 @@ if (regoForm) {
         password: password.value,
       }),
     });
+
+    const data = await res.json();
+
+    if (data.message === 'ok') {
+      window.location.assign('/home');
+    } else {
+      const html = `<div>${data.message}</div>`;
+      regoForm.insertAdjacentHTML('beforeend', html);
+
+      //! можно добавить во вьюшку див и менять там иннерХТМЛ
+    }
+  });
+}
+
+if (random) {
+  random.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const id  = event.target.getAttribute("id");
+
+    const res = await fetch(`/home/${id}`);
 
     const data = await res.json();
 

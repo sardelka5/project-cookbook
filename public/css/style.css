@@ -10,6 +10,12 @@ a:active {
   color: inherit;
 }
 
+#blyodo {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-evenly;
+  
+}
 .one-recipe {
   z-index: 7;
   margin: auto;
