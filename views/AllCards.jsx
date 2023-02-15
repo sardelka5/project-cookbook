@@ -5,7 +5,7 @@ const Layout = require('./Layout');
 module.exports = function AllCards({ arrayRecipes }) {
   return (
     <Layout>
-      <div className="container cards-container" id='blyodo'>
+      <div className="container cards-container" id="blyodo">
         {arrayRecipes.length ? (
           arrayRecipes.map((recipe) => (
             <a
@@ -13,7 +13,11 @@ module.exports = function AllCards({ arrayRecipes }) {
               id={`${recipe.idMeal}`}
               className="link-recipe"
             >
-            <div id={`${recipe.idMeal}`} className="card mt-3" style={{ width: '18rem' }}>
+              <div
+                id={`${recipe.idMeal}`}
+                className="card mt-3"
+                style={{ width: '18rem' }}
+              >
                 <img
                   src={`${recipe.strMealThumb}`}
                   className="card-img-top"
@@ -39,19 +43,35 @@ module.exports = function AllCards({ arrayRecipes }) {
                 <p className="card-text">Кол-во: 5</p>
               </div>
             </div>
-          )}
           </a>
-          <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Кнопка выпадающего списка
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#" id="random">Random</a></li>
-    <li><a class="dropdown-item" href="#" id="seafood">Seafood</a></li>
-    <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
-  </ul>
-</div>
         )}
+        <div className="dropdown">
+          <button
+            className="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Кнопка выпадающего списка
+          </button>
+          <ul className="dropdown-menu">
+            <li>
+              <a className="dropdown-item" href="/" id="random">
+                Random
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item" href="/" id="seafood">
+                Seafood
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item" href="/">
+                Что-то еще здесь
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </Layout>
   );
