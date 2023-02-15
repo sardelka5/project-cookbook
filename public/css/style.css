@@ -9,3 +9,49 @@ a:active {
   text-decoration: underline;
   color: inherit;
 }
+
+#blyodo {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-evenly;
+  
+}
+.one-recipe {
+  z-index: 7;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.one-img {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.black-back {
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.5)),
+    url('/img/back/home-back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+}
+.text-justify {
+  text-align: justify;
+}
+.card-black {
+  opacity: 0.6;
+  width: 300px;
+}

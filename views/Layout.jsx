@@ -11,11 +11,11 @@ module.exports = function Layout({ title, children, authUser }) {
         <link rel="stylesheet" href="/css/style.css" />
         <script defer src="/js/bootstrap.bundle.min.js" />
         <script defer src="/js/application.js" />
+        <script defer src="/js/applicationForOneCard.js" />
         <title>{title}</title>
       </head>
       <body>
         <div className="collapse" id="navbarToggleExternalContent">
-
           {authUser ? (
             <div className="bg-dark p-4">
               {' '}
@@ -45,7 +45,6 @@ module.exports = function Layout({ title, children, authUser }) {
               </span>
             </div>
           )}
-
         </div>
         <nav className="navbar navbar-dark bg-dark">
           <div className="container-fluid">
