@@ -5,20 +5,18 @@ const Layout = require('./Layout');
 module.exports = function AllCards({ arrayRecipes }) {
   return (
     <Layout>
-      <div className="container cards-container">
-        <h1 className="mt-5">All recipes here:</h1>
-        <ul id="list" className="list-group mt-5">
+      <div className="container cards-container" id='blyodo'>
           {arrayRecipes.length ? (
             arrayRecipes.map((recipe) => (
-              <div className="card" style={{ width: '18rem' }}>
+              <div id={`${recipe.idMeal}`} className="cardn mt-3" style={{ width: '18rem' }}>
                 <img
-                  src={`${recipe.StrMealThumb}`}
+                  src={`${recipe.strMealThumb}`}
                   className="card-img-top"
                   alt="Картинка не прогрузилась"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{recipe.StrMeal}</h5>
-                  <p className="card-text">{recipe.arringridient.length}</p>
+                  <h5 className="card-title">{recipe.strMeal}</h5>
+                  <p className="card-text">{recipe.arringredient.length}</p>
                 </div>
               </div>
             ))
@@ -35,7 +33,17 @@ module.exports = function AllCards({ arrayRecipes }) {
               </div>
             </div>
           )}
-        </ul>
+          <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Кнопка выпадающего списка
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#" id="random">Random</a></li>
+    <li><a class="dropdown-item" href="#" id="seafood">Seafood</a></li>
+    <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
+  </ul>
+</div>
+
       </div>
     </Layout>
   );

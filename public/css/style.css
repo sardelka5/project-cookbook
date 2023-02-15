@@ -9,3 +9,10 @@ a:active {
   text-decoration: underline;
   color: inherit;
 }
+
+#blyodo {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-evenly;
+  
+}
