@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const AllCards = require('../../views/AllCards');
+const Table = require('../../views/Table');
 // const { Card } = require('../../db/models');
 
 // router.get('/', async (req, res) => {
@@ -63,19 +64,19 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   console.log(req.params);
-  if (id === 'seafood') {
+  if (id != 'random') {
     const arrBlyodo = [];
     console.log(id);
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`);
+    const menu = await response.json();
+    const arrmenu = menu.meals.map(el => el.idMeal);
+    console.log(arrmenu);
     for (let i = 0; i < 8; i++) {
-      const response = await fetch(
-        'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood'
-      );
-      console.log('>>>>>>>>>>>>>>>>>>>>');
-      console.log(response.json());
+      let number = arrmenu[i];
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${number}`);
       arrBlyodo.push(response.json());
     }
     const data = await Promise.all(arrBlyodo);
-    console.log(data[0].meals);
     const result = data.map((el) => {
       let obj = {
         idMeal: el.meals[0].idMeal,
@@ -90,7 +91,7 @@ router.get('/:id', async (req, res) => {
       }
       return obj;
     });
-    res.status(200).renderComponent(AllCards, { arrayRecipes: result });
+    res.status(200).renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
   }
 
   if (id === 'random') {
@@ -116,7 +117,7 @@ router.get('/:id', async (req, res) => {
       }
       return obj;
     });
-    res.status(200).renderComponent(AllCards, { arrayRecipes: result });
+    res.status(200).renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
   }
 });
 
