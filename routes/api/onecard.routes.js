@@ -18,11 +18,6 @@ router.route('/:id').get(async (req, res) => {
     idMeal: dataForOne.meals[0].idMeal,
   };
 
-  const userId = res.locals.user.id;
-  const dataFromBD = await Card.findOne({
-    where: { dish: oneRecipe.idMeal, user_id: userId },
-  });
-
   for (let j = 1; j < 21; j += 1) {
     if (
       dataForOne.meals[0][`strIngredient${j}`] !== '' &&
@@ -31,13 +26,26 @@ router.route('/:id').get(async (req, res) => {
       oneRecipe.ingredients.push(dataForOne.meals[0][`strIngredient${j}`]);
     }
   }
-  const html = res.renderComponent(
-    OneCard,
-    { oneRecipeObj: oneRecipe, dataFromBD },
-    { htmlOnly: true }
-  );
 
-  res.json(html);
+  if (res.locals.user) {
+    const userId = res.locals.user.id;
+    const dataFromBD = await Card.findOne({
+      where: { dish: oneRecipe.idMeal, user_id: userId },
+    });
+    const html = res.renderComponent(
+      OneCard,
+      { oneRecipeObj: oneRecipe, dataFromBD },
+      { htmlOnly: true }
+    );
+    res.json(html);
+  } else {
+    const html = res.renderComponent(
+      OneCard,
+      { oneRecipeObj: oneRecipe },
+      { htmlOnly: true }
+    );
+    res.json(html);
+  }
 });
 
 module.exports = router;
