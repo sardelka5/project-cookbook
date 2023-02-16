@@ -37,11 +37,6 @@ module.exports = function Dropdowns({ }) {
                 Pasta
                 </a>
               </li>
-              <li>
-                <a className="dropdown-item" href="/" id="Vegan">
-                Vegan
-                </a>
-              </li>
             </ul>
           </div>
     );

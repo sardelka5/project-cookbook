@@ -29,7 +29,7 @@ const Table = require('../../views/Table');
 
 router.get('/', async (req, res) => {
   //! проверить всем!
-  const { user } = res.locals;
+  const { user } = res.app.locals;
   // const arrayRecipes = await Card.findAll({ raw: true });
   // console.log(user.name)
   // console.log(user.dataValues)
@@ -117,6 +117,7 @@ router.get('/:id', async (req, res) => {
       }
       return obj;
     });
+    res.locals.randomMenu = result;
     res.status(200).renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
   }
 });
