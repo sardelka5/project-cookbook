@@ -29,7 +29,7 @@ const Table = require('../../views/Table');
 
 router.get('/', async (req, res) => {
   //! проверить всем!
-  const { user } = res.app.locals;
+  const { user } = res.locals;
   // const arrayRecipes = await Card.findAll({ raw: true });
   // console.log(user.name)
   // console.log(user.dataValues)

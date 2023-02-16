@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
-      name: {
+      dish: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
