@@ -5,7 +5,7 @@ module.exports = function Registration() {
   return (
     <Layout>
       <div className="container rego-container" style={{ width: '600px' }}>
-        <h1 className="mt-5">Sign in!</h1>
+        <h1 className="mt-5">Sign up!</h1>
         <form
           method="post"
           action="/registration"
@@ -47,7 +47,7 @@ module.exports = function Registration() {
           </div>
           <div className="mb-3 text-danger" id="error"> </div>
           <button type="submit" className="btn btn-primary">
-            Sign in
+            Sign up
           </button>
         </form>
       </div>

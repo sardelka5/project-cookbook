@@ -26,10 +26,7 @@ if (logoForm) {
     if (data.message === 'ok') {
       window.location.assign('/home');
     } else {
-      // const html = `<div>${data.message}</div>`;
-      // logoForm.insertAdjacentHTML('beforeend', html);
       errorMessage.innerText = data.message;
-      //! можно добавить во вьюшку див и менять там иннерХТМЛ
     }
   });
 }
@@ -58,11 +55,7 @@ if (regoForm) {
     if (data.message === 'ok') {
       window.location.assign('/home');
     } else {
-      // const html = `<div>${data.message}</div>`;
-      // regoForm.insertAdjacentHTML('beforeend', html);
       errorMessage.innerText = data.message;
-
-      //! можно добавить во вьюшку див и менять там иннерХТМЛ
     }
   });
 }
@@ -82,8 +75,6 @@ if (random) {
     } else {
       const html = `<div>${data.message}</div>`;
       regoForm.insertAdjacentHTML('beforeend', html);
-
-      //! можно добавить во вьюшку див и менять там иннерХТМЛ
     }
   });
 }

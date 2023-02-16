@@ -30,6 +30,8 @@ router.get('/', async (req, res) => {
   //! проверить всем!
   const { user } = res.app.locals;
   // const arrayRecipes = await Card.findAll({ raw: true });
+  // console.log(user.name)
+  // console.log(user.dataValues)
 
   const arrBlyodo = [];
   for (let i = 0; i < 8; i++) {
