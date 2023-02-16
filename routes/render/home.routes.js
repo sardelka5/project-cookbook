@@ -28,14 +28,10 @@ const Table = require('../../views/Table');
 // module.exports = router;
 
 router.get('/', async (req, res) => {
-  //! проверить всем!
   const { user } = res.locals;
-  // const arrayRecipes = await Card.findAll({ raw: true });
-  // console.log(user.name)
-  // console.log(user.dataValues)
 
   const arrBlyodo = [];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 8; i += 1) {
     const response = await fetch(
       'https://www.themealdb.com/api/json/v1/1/random.php'
     );
@@ -49,13 +45,19 @@ router.get('/', async (req, res) => {
       strMeal: el.meals[0].strMeal,
       arringredient: [],
     };
-    for (let j = 1; j < 21; j++) {
-      if (el.meals[0][`strIngredient${j}`] !== '') {
+    for (let j = 1; j < 21; j += 1) {
+      if (
+        el.meals[0][`strIngredient${j}`] !== '' &&
+        el.meals[0][`strIngredient${j}`] !== null
+      ) {
         obj.arringredient.push(el.meals[0][`strIngredient${j}`]);
       }
     }
     return obj;
   });
+
+  res.app.locals.meals = result;
+
   res
     .status(200)
     .renderComponent(AllCards, { arrayRecipes: result, authUser: user });
@@ -63,40 +65,77 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(req.params);
-  if (id != 'random') {
+  const { meals } = res.app.locals;
+
+  if (id === 'MinToMax') {
+    const sortedMeals = meals
+      .slice()
+      .sort((a, b) => a.arringredient.length - b.arringredient.length);
+
+    res
+      .status(200)
+      .renderComponent(
+        Table,
+        { arrayRecipes: sortedMeals },
+        { htmlOnly: false }
+      );
+  }
+
+  if (id === 'MaxToMin') {
+    const sortedMeals = meals
+      .slice()
+      .sort((a, b) => b.arringredient.length - a.arringredient.length);
+
+    res
+      .status(200)
+      .renderComponent(
+        Table,
+        { arrayRecipes: sortedMeals },
+        { htmlOnly: false }
+      );
+  }
+
+  if (id !== 'random' && id !== 'MaxToMin' && id !== 'MinToMax') {
     const arrBlyodo = [];
-    console.log(id);
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`);
+    const response = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`
+    );
     const menu = await response.json();
-    const arrmenu = menu.meals.map(el => el.idMeal);
-    console.log(arrmenu);
-    for (let i = 0; i < 8; i++) {
-      let number = arrmenu[i];
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${number}`);
-      arrBlyodo.push(response.json());
+    const arrmenu = menu.meals.map((el) => el.idMeal);
+
+    for (let i = 0; i < 8; i += 1) {
+      const number = arrmenu[i];
+      const response1 = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${number}`
+      );
+      arrBlyodo.push(response1.json());
     }
     const data = await Promise.all(arrBlyodo);
     const result = data.map((el) => {
-      let obj = {
+      const obj1 = {
         idMeal: el.meals[0].idMeal,
         strMealThumb: el.meals[0].strMealThumb,
         strMeal: el.meals[0].strMeal,
         arringredient: [],
       };
-      for (let j = 1; j < 21; j++) {
+      for (let j = 1; j < 21; j += 1) {
         if (el.meals[0][`strIngredient${j}`] !== '') {
-          obj.arringredient.push(el.meals[0][`strIngredient${j}`]);
+          obj1.arringredient.push(el.meals[0][`strIngredient${j}`]);
         }
       }
-      return obj;
+      return obj1;
     });
-    res.status(200).renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
+
+    res.app.locals.meals = result;
+
+    res
+      .status(200)
+      .renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
   }
 
   if (id === 'random') {
     const arrBlyodo = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i += 1) {
       const response = await fetch(
         'https://www.themealdb.com/api/json/v1/1/random.php'
       );
@@ -110,14 +149,19 @@ router.get('/:id', async (req, res) => {
         strMeal: el.meals[0].strMeal,
         arringredient: [],
       };
-      for (let j = 1; j < 21; j++) {
+      for (let j = 1; j < 21; j += 1) {
         if (el.meals[0][`strIngredient${j}`] !== '') {
           obj.arringredient.push(el.meals[0][`strIngredient${j}`]);
         }
       }
       return obj;
     });
-    res.status(200).renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
+
+    res.app.locals.meals = result;
+
+    res
+      .status(200)
+      .renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
   }
 });
 
