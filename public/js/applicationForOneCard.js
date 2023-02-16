@@ -11,8 +11,8 @@ if (cardsContainer) {
       const response = await fetch(`/api/card/${id}`);
       const oneRecipeObj = await response.json();
 
-      cards.forEach((el) => el.setAttribute('class', 'card-black'));
-      body.setAttribute('class', 'black-back');
+      cards.forEach((el) => el.classList.add('card-black'));
+      body.classList.add('black-back');
       body.insertAdjacentHTML('afterend', oneRecipeObj);
 
       const oneCardJs = document.querySelector('.one-recipe');
@@ -20,8 +20,8 @@ if (cardsContainer) {
         if (!e.target.classList.contains('btn-like')) {
           e.preventDefault();
           oneCardJs.remove();
-          body.removeAttribute('class', 'black-back');
-          cards.forEach((el) => el.removeAttribute('class', 'card-black'));
+          body.classList.remove('black-back');
+          cards.forEach((el) => el.classList.remove('card-black'));
         }
       });
 

@@ -25,15 +25,7 @@ a:active {
   bottom: 0;
   right: 0;
   width: 50%;
-  height: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.one-img {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  height: 70%;
 }
 
 .header-center {
@@ -51,10 +43,46 @@ a:active {
   background-attachment: fixed;
   background-position: top;
 }
+
+.ingridientList {
+  display: inline-flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ingridient {
+  padding: 0.5rem 1rem;
+  color: #212529;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.dishCard {
+    width: 18rem;
+    height: 27rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 1px 1px 20px 5px grey;
+}
+
 .link-recipe {
   border: 2px;
   border-radius: 10px;
 }
+
+.dishCard:hover {
+  transform: scale(0.96);
+}
+
+.dishCard:hover {
+  transform: scale(1.05);
+
+}
+  
 .text-justify {
   text-align: justify;
 }
@@ -70,9 +98,31 @@ a:active {
   border-radius: 50%;
   right: 0;
 }
+
+.one-card-js {
+  max-width: 650px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 5px 5px 20px 20px grey;
+}
+
+.one-img {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ingridientTitle {
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+}
+
 .for-btn-like {
   position: relative;
 }
+
 .btn-like-in-table {
   position: absolute;
   top: 10px;
