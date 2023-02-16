@@ -13,7 +13,7 @@ module.exports = function Dropdowns() {
       </button>
       <ul className="dropdown-menu" id="list">
         <li>
-          <a className="dropdown-item" href="/" id="random">
+          <a className="dropdown-item" href="/" id="Random dishes">
             Random
           </a>
         </li>

@@ -33,13 +33,13 @@ router.get('/', async (req, res) => {
   const arrBlyodo = [];
   for (let i = 0; i < 8; i += 1) {
     const response = await fetch(
-      'https://www.themealdb.com/api/json/v1/1/random.php'
+      'https://www.themealdb.com/api/json/v1/1/random.php',
     );
     arrBlyodo.push(response.json());
   }
   const data = await Promise.all(arrBlyodo);
   const result = data.map((el) => {
-    let obj = {
+    const obj = {
       idMeal: el.meals[0].idMeal,
       strMealThumb: el.meals[0].strMealThumb,
       strMeal: el.meals[0].strMeal,
@@ -47,20 +47,20 @@ router.get('/', async (req, res) => {
     };
     for (let j = 1; j < 21; j += 1) {
       if (
-        el.meals[0][`strIngredient${j}`] !== '' &&
-        el.meals[0][`strIngredient${j}`] !== null
+        el.meals[0][`strIngredient${j}`] !== ''
+        && el.meals[0][`strIngredient${j}`] !== null
       ) {
         obj.arringredient.push(el.meals[0][`strIngredient${j}`]);
       }
     }
     return obj;
   });
-
+  res.app.locals.data = 'Random dishes';
   res.app.locals.meals = result;
 
   res
     .status(200)
-    .renderComponent(AllCards, { arrayRecipes: result, authUser: user });
+    .renderComponent(AllCards, { arrayRecipes: result, authUser: user, category: 'Random dishes' });
 });
 
 router.get('/:id', async (req, res) => {
@@ -68,6 +68,10 @@ router.get('/:id', async (req, res) => {
   const { meals } = res.app.locals;
 
   if (id === 'MinToMax') {
+    // console.log(res.locals);
+    // console.log(req.session)
+    // res.locals.data = meals
+    console.log(res.locals.data)
     const sortedMeals = meals
       .slice()
       .sort((a, b) => a.arringredient.length - b.arringredient.length);
@@ -76,12 +80,13 @@ router.get('/:id', async (req, res) => {
       .status(200)
       .renderComponent(
         Table,
-        { arrayRecipes: sortedMeals },
-        { htmlOnly: false }
+        { arrayRecipes: sortedMeals, category: res.app.locals.data },
+        { htmlOnly: false },
       );
   }
 
   if (id === 'MaxToMin') {
+    console.log(res.locals.currentCategory);
     const sortedMeals = meals
       .slice()
       .sort((a, b) => b.arringredient.length - a.arringredient.length);
@@ -90,15 +95,16 @@ router.get('/:id', async (req, res) => {
       .status(200)
       .renderComponent(
         Table,
-        { arrayRecipes: sortedMeals },
-        { htmlOnly: false }
+        { arrayRecipes: sortedMeals, category: res.app.locals.data },
+        { htmlOnly: false },
       );
   }
 
-  if (id !== 'random' && id !== 'MaxToMin' && id !== 'MinToMax') {
+  if (id !== 'Random dishes' && id !== 'MaxToMin' && id !== 'MinToMax') {
+    res.app.locals.data = id;
     const arrBlyodo = [];
     const response = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`
+      `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`,
     );
     const menu = await response.json();
     const arrmenu = menu.meals.map((el) => el.idMeal);
@@ -106,7 +112,7 @@ router.get('/:id', async (req, res) => {
     for (let i = 0; i < 8; i += 1) {
       const number = arrmenu[i];
       const response1 = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${number}`
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${number}`,
       );
       arrBlyodo.push(response1.json());
     }
@@ -130,20 +136,21 @@ router.get('/:id', async (req, res) => {
 
     res
       .status(200)
-      .renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
+      .renderComponent(Table, { arrayRecipes: result, category: id }, { htmlOnly: false });
   }
 
-  if (id === 'random') {
+  if (id === 'Random dishes') {
+    res.locals.data = id;
     const arrBlyodo = [];
     for (let i = 0; i < 8; i += 1) {
       const response = await fetch(
-        'https://www.themealdb.com/api/json/v1/1/random.php'
+        'https://www.themealdb.com/api/json/v1/1/random.php',
       );
       arrBlyodo.push(response.json());
     }
     const data = await Promise.all(arrBlyodo);
     const result = data.map((el) => {
-      let obj = {
+      const obj = {
         idMeal: el.meals[0].idMeal,
         strMealThumb: el.meals[0].strMealThumb,
         strMeal: el.meals[0].strMeal,
@@ -161,7 +168,7 @@ router.get('/:id', async (req, res) => {
 
     res
       .status(200)
-      .renderComponent(Table, { arrayRecipes: result }, { htmlOnly: false });
+      .renderComponent(Table, { arrayRecipes: result, category: id }, { htmlOnly: false });
   }
 });
 
