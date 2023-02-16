@@ -1,10 +1,10 @@
 const regoForm = document.querySelector('#form-rego');
 const logoForm = document.querySelector('#form-logo');
-const errorMessage = document.querySelector('#error')
+const errorMessage = document.querySelector('#error');
 const list = document.querySelector('#list');
-const seafood = document.querySelector('#seafood');
+const list2 = document.querySelector('#list2');
 const blyodo = document.querySelector('#blyodo');
- 
+
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -36,7 +36,8 @@ if (regoForm) {
   regoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, name, email, passwordOne, passwordTwo } = event.target;
+    const { method, action, name, email, passwordOne, passwordTwo } =
+      event.target;
 
     const res = await fetch(action, {
       method,
@@ -64,16 +65,27 @@ if (regoForm) {
 if (list) {
   list.addEventListener('click', async (event) => {
     event.preventDefault();
-  
-    const id  = event.target.getAttribute("id");
-  
-    const res = await fetch(`/home/${id}`);
 
-    const data = await res.text();
-      console.log(data);
-      blyodo.innerHTML = data;
+    const id = event.target.getAttribute('id');
 
-      // regoForm.insertAdjacentHTML('beforeend', html);
-    
+    const res1 = await fetch(`/home/${id}`);
+
+    const data = await res1.text();
+
+    blyodo.innerHTML = data;
+  });
+}
+
+if (list2) {
+  list2.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const id = event.target.getAttribute('id');
+
+    const res1 = await fetch(`/home/${id}`);
+
+    const data = await res1.text();
+
+    blyodo.innerHTML = data;
   });
 }
