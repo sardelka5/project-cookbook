@@ -17,7 +17,7 @@ module.exports = {
           key: 'id',
         },
       },
-      name: {
+      dish: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
