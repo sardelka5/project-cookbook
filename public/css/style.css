@@ -6,7 +6,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  /* text-decoration: underline; */
+  text-decoration: underline;
   color: inherit;
 }
 
