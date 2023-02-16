@@ -42,14 +42,17 @@ a:active {
 }
 
 .black-back {
-  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.5)),
-    url('/img/back/home-back.jpg');
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(140, 140, 140, 2.5));
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: top;
 }
-
+.link-recipe {
+  border: 2px;
+  border-radius: 10px;
+  
+}
 .text-justify {
   text-align: justify;
 }
