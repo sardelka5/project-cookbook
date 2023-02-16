@@ -8,18 +8,27 @@ module.exports = function Table({ arrayRecipes }) {
           <a
             href={`/api/card/${recipe.idMeal}`}
             id={`${recipe.idMeal}`}
+            key={`${recipe.idMeal}`}
             className="link-recipe"
           >
             <div
               id={`${recipe.idMeal}`}
+              key={`${recipe.idMeal}`}
               className="card mt-3"
               style={{ width: '18rem' }}
             >
               <img
                 src={`${recipe.strMealThumb}`}
-                className="card-img-top"
+                className="card-img-top for-btn-like"
                 alt="Картинка не прогрузилась"
               />
+              <button
+                id={`${recipe.idMeal}`}
+                type="button"
+                className="many-like-btns"
+              >
+                Like
+              </button>
               <div className="card-body">
                 <h5 className="card-title">{recipe.strMeal}</h5>
                 <p className="card-text">{`Number of ingridients: ${recipe.arringredient.length}`}</p>
