@@ -1,7 +1,6 @@
 const cardsContainer = document.querySelector('.cards-container');
 const body = document.querySelector('body');
-const card = document.querySelector('.card');
-const img = document.querySelector('.card-img-top');
+const cards = document.querySelectorAll('.card');
 
 if (cardsContainer) {
   cardsContainer.addEventListener('click', async (event) => {
@@ -9,17 +8,35 @@ if (cardsContainer) {
 
     if (event.target.parentNode.parentNode.classList.contains('link-recipe')) {
       const id = event.target.parentNode.parentNode.getAttribute('id');
-      console.log(id);
+
       const response = await fetch(`/api/card/${id}`);
       const oneRecipeObj = await response.json();
-      console.log(oneRecipeObj);
 
-      console.log(card);
-      //сделать чтобы много сразу карточек становились прозрачными
-      card.setAttribute('class', 'card-black');
-      img.setAttribute('class', 'card-black');
+      cards.forEach((el) => el.setAttribute('class', 'card-black'));
       body.setAttribute('class', 'black-back');
       body.insertAdjacentHTML('afterend', oneRecipeObj);
+
+      const oneCardJs = document.querySelectorAll('.one-card-js');
+
+      oneCardJs.forEach((card) => {
+        card.addEventListener('click', (e) => {
+          if (!e.target.classList.contains('btn-like')) {
+            e.preventDefault();
+            window.location.assign('/home');
+            // card.remove();
+            // body.removeAttribute('class', 'black-back');
+            // cards.forEach((el) => el.removeAttribute('class', 'card-black'));
+            //? можно переделать на др.рендеринг
+          }
+        });
+      });
+
+      const likeBtn = document.querySelector('.btn-like');
+
+      likeBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        console.log(id);
+      });
     }
   });
 }

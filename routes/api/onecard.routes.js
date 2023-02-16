@@ -14,6 +14,7 @@ router.route('/:id').get(async (req, res) => {
     name: dataForOne.meals[0].strMeal,
     instruction: dataForOne.meals[0].strInstructions,
     ingredients: [],
+    idMeal: dataForOne.meals[0].idMeal,
   };
 
   for (let j = 1; j < 21; j += 1) {

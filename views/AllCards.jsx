@@ -24,7 +24,7 @@ module.exports = function AllCards({ arrayRecipes, authUser }) {
                   alt="Картинка не прогрузилась"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{recipe.strMeal}</h5>
+                  <h5 className="card-title">{recipe.strMeal} </h5>
                   <p className="card-text">{recipe.arringredient.length}</p>
                 </div>
               </div>
