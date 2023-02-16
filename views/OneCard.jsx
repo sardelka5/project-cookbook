@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const React = require('react');
 
-module.exports = function OneCard({ oneRecipeObj }) {
+module.exports = function OneCard({ oneRecipeObj, dataFromBD }) {
   return (
     <div className="container one-recipe">
       <div className="card mb-3 one-card-js">
@@ -11,7 +11,11 @@ module.exports = function OneCard({ oneRecipeObj }) {
           <button
             id={`${oneRecipeObj.idMeal}`}
             type="button"
-            className="btn btn-outline-danger btn-like"
+            className={
+              dataFromBD
+                ? 'btn btn-danger btn-like'
+                : 'btn btn-outline-danger btn-like'
+            }
           >
             Like
           </button>
@@ -27,7 +31,13 @@ module.exports = function OneCard({ oneRecipeObj }) {
             Ingridients:
             <ul className="list-group list-group-flush ingridientList">
               {oneRecipeObj.ingredients.map((el) => (
-                <li className="list-group-item ingridient">{el}</li>
+                <li
+                  key={`${oneRecipeObj.idMeal}`}
+                  id={`${oneRecipeObj.idMeal}`}
+                  className="list-group-item ingridient"
+                >
+                  {el}
+                </li>
               ))}
             </ul>
           </p>

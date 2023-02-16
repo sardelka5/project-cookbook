@@ -12,17 +12,14 @@ module.exports = function Layout({ title, children, authUser }) {
         <script defer src="/js/bootstrap.bundle.min.js" />
         <script defer src="/js/application.js" />
         <script defer src="/js/applicationForOneCard.js" />
+        <script defer src="/js/applicationForLikesFav.js" />
         <title>{title}</title>
       </head>
       <body>
         <div className="collapse" id="navbarToggleExternalContent">
           {authUser ? (
             <div className="bg-dark p-4">
-              <h5 className="text-white h3">
-                Hello,
-                {' '}
-                {`${authUser.name}`}
-              </h5>
+              <h5 className="text-white h3">Hello, {`${authUser.name}`}</h5>
               <h5 className="text-white h4">
                 <a href="/home">Home</a>
               </h5>

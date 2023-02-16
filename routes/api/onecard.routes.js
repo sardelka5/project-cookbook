@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const OneCard = require('../../views/OneCard');
+const { Card } = require('../../db/models');
 
 router.route('/:id').get(async (req, res) => {
   const { id } = req.params;
@@ -17,6 +18,11 @@ router.route('/:id').get(async (req, res) => {
     idMeal: dataForOne.meals[0].idMeal,
   };
 
+  const userId = res.locals.user.id;
+  const dataFromBD = await Card.findOne({
+    where: { dish: oneRecipe.idMeal, user_id: userId },
+  });
+
   for (let j = 1; j < 21; j += 1) {
     if (
       dataForOne.meals[0][`strIngredient${j}`] !== '' &&
@@ -27,7 +33,7 @@ router.route('/:id').get(async (req, res) => {
   }
   const html = res.renderComponent(
     OneCard,
-    { oneRecipeObj: oneRecipe },
+    { oneRecipeObj: oneRecipe, dataFromBD },
     { htmlOnly: true }
   );
 

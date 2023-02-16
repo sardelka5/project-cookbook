@@ -7,7 +7,7 @@ if (cardsContainer) {
     event.preventDefault();
     if (event.target.parentNode.parentNode.classList.contains('link-recipe')) {
       const id = event.target.parentNode.parentNode.getAttribute('id');
-      console.log(event.target);
+      // console.log(event.target);
       const response = await fetch(`/api/card/${id}`);
       const oneRecipeObj = await response.json();
 
@@ -27,31 +27,24 @@ if (cardsContainer) {
 
       const likeBtn = document.querySelector('.btn-like');
 
-      likeBtn.addEventListener('click', async (event) => {
+      likeBtn.addEventListener('click', async (e) => {
         event.preventDefault();
-        const id = event.target.getAttribute("id");
-        
-        if(event.target.classList.contains('btn-outline-danger')) {
-          
-        const response = await fetch(`/like/${id}`, {method: 'post'});
-        const result = await response.json();
-          if (result === 'ok') {
-            
-            event.target.classList.remove('btn-outline-danger');
-            event.target.classList.add('btn-danger');
-          }
-        }
-        if(event.target.classList.contains('btn-danger')) {
-          
-        const response = await fetch(`/like/${id}`, {method: 'delete'});
-        const result = await response.json();
-          if (result === 'ok') {
-            
-            event.target.classList.remove('btn-danger');
-            event.target.classList.add('btn-outline-danger');
-          }
-        }
 
+        if (e.target.classList.contains('btn-outline-danger')) {
+          const response1 = await fetch(`/like/${id}`, { method: 'post' });
+          const result = await response1.json();
+          if (result === 'ok') {
+            e.target.classList.remove('btn-outline-danger');
+            e.target.classList.add('btn-danger');
+          }
+        } else {
+          const response1 = await fetch(`/like/${id}`, { method: 'delete' });
+          const result = await response1.json();
+          if (result === 'ok') {
+            e.target.classList.remove('btn-danger');
+            e.target.classList.add('btn-outline-danger');
+          }
+        }
       });
     }
   });

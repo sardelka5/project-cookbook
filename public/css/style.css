@@ -34,12 +34,16 @@ a:active {
 }
 
 .black-back {
-  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(140, 140, 140, 2.5));
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.8),
+    rgba(140, 140, 140, 2.5)
+  );
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: top;
 }
+
 .ingridientList {
   display: inline-flex;
   flex-direction: row;
@@ -63,8 +67,13 @@ a:active {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 1px 1px 20px 5px grey;
-
 }
+
+.link-recipe {
+  border: 2px;
+  border-radius: 10px;
+}
+
 .dishCard:hover {
   transform: scale(0.96);
 }
@@ -98,7 +107,6 @@ a:active {
   box-shadow: 5px 5px 20px 20px grey;
 }
 
-
 .one-img {
   width: 100%;
   margin-left: auto;
@@ -109,4 +117,14 @@ a:active {
     display: flex;
     justify-content: center;
     font-weight: 800;
+}
+
+.for-btn-like {
+  position: relative;
+}
+
+.btn-like-in-table {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
