@@ -66,7 +66,7 @@ if (list) {
     event.preventDefault();
   
     const id  = event.target.getAttribute("id");
-   
+  
     const res = await fetch(`/home/${id}`);
 
     const data = await res.text();
