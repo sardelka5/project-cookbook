@@ -6,7 +6,8 @@ module.exports = function OneCard({ oneRecipeObj }) {
     <div className="container one-recipe">
       <div className="card mb-3 one-card-js">
         <h5 className="card-title mt-3 header-center">
-          {oneRecipeObj.name}{' '}
+          {oneRecipeObj.name}
+          {' '}
           <button
             id={`${oneRecipeObj.idMeal}`}
             type="button"
@@ -21,13 +22,16 @@ module.exports = function OneCard({ oneRecipeObj }) {
           alt="Картинка не прогрузилась"
         />
         <div className="card-body">
-          <p className="card-text">
-            <ul className="list-group list-group-flush">
+          <p className="card-text ingridientTitle">
+            {' '}
+            Ingridients:
+            <ul className="list-group list-group-flush ingridientList">
               {oneRecipeObj.ingredients.map((el) => (
-                <li className="list-group-item">{el}</li>
+                <li className="list-group-item ingridient">{el}</li>
               ))}
             </ul>
           </p>
+          <p className="card-text ingridientTitle">Сooking instruction</p>
           <p className="card-text text-justify">{oneRecipeObj.instruction}</p>
         </div>
       </div>

@@ -12,7 +12,7 @@ module.exports = function Table({ arrayRecipes }) {
           >
             <div
               id={`${recipe.idMeal}`}
-              className="card mt-3"
+              className="card mt-3 dishCard"
               style={{ width: '18rem' }}
             >
               <img
