@@ -1,9 +1,10 @@
 const regoForm = document.querySelector('#form-rego');
 const logoForm = document.querySelector('#form-logo');
 const errorMessage = document.querySelector('#error')
-const random = document.querySelector('#random');
+const list = document.querySelector('#list');
 const seafood = document.querySelector('#seafood');
-
+const blyodo = document.querySelector('#blyodo');
+ 
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -60,21 +61,19 @@ if (regoForm) {
   });
 }
 
-if (random) {
-  random.addEventListener('click', async (event) => {
+if (list) {
+  list.addEventListener('click', async (event) => {
     event.preventDefault();
-
+  
     const id  = event.target.getAttribute("id");
-
+   
     const res = await fetch(`/home/${id}`);
 
-    const data = await res.json();
+    const data = await res.text();
+      console.log(data);
+      blyodo.innerHTML = data;
 
-    if (data.message === 'ok') {
-      window.location.assign('/home');
-    } else {
-      const html = `<div>${data.message}</div>`;
-      regoForm.insertAdjacentHTML('beforeend', html);
-    }
+      // regoForm.insertAdjacentHTML('beforeend', html);
+    
   });
 }
