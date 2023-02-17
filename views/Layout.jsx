@@ -69,9 +69,16 @@ module.exports = function Layout({ title, children, authUser }) {
             >
               <span className="navbar-toggler-icon" />
             </button>
+            <div className="projectName">CookBook</div>
           </div>
         </nav>
         {children}
+      <div className="footer"> 
+      <div className="devBy">Developed by:</div>
+      <div className="devBy">Alisa Savorskaya</div>
+      <div className="devBy">Nikita Kern</div>
+      <div className="devBy">Anton Shmelev</div>
+      </div>
       </body>
     </html>
   );
