@@ -10,10 +10,10 @@ router.get('/', async (req, res) => {
   });
   const arr = [];
   for (let i = 0; i < favorites.length; i += 1) {
-    const response = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${favorites[i].dish}`,
-    );
-    arr.push(response.json());
+    const response = fetch(
+      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${favorites[i].dish}`
+    ).then((res2) => res2.json());
+    arr.push(response);
   }
   const data = await Promise.all(arr);
   const favoriteDish = data.map((el) => {
@@ -25,8 +25,8 @@ router.get('/', async (req, res) => {
     };
     for (let j = 1; j < 21; j += 1) {
       if (
-        el.meals[0][`strIngredient${j}`] !== ''
-        && el.meals[0][`strIngredient${j}`] !== null
+        el.meals[0][`strIngredient${j}`] !== '' &&
+        el.meals[0][`strIngredient${j}`] !== null
       ) {
         obj.arringredient.push(el.meals[0][`strIngredient${j}`]);
       }
