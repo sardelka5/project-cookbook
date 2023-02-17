@@ -196,10 +196,9 @@ a:active {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  position: fixed;
 }
 
 .devBy {
-margin-right: 20px;
+  margin-right: 20px;
 }
-
