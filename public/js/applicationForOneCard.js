@@ -74,7 +74,7 @@ if (main) {
           if (result === 'ok') {
             const theme =
               e.target.parentNode.parentNode.parentNode.parentNode
-                .previousSibling.lastChild.firstChild.innerText;
+                .previousSibling.previousSibling.lastChild.firstChild.innerText;
             // const theme1 =
             //   e.target.parentNode.parentNode.parentNode.previousSibling
             //     .lastChild.firstChild;
