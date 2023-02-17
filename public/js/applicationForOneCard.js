@@ -1,9 +1,10 @@
 const cardsContainer = document.querySelector('.cards-container');
 const body = document.querySelector('body');
 const cards = document.querySelectorAll('.card');
+const main = document.querySelector('#main')
 
-if (cardsContainer) {
-  cardsContainer.addEventListener('click', async (event) => {
+if (main) {
+  main.addEventListener('click', async (event) => {
     event.preventDefault();
     if (event.target.parentNode.parentNode.classList.contains('link-recipe')) {
       const id = event.target.parentNode.parentNode.getAttribute('id');

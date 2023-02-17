@@ -2,7 +2,7 @@ const React = require('react');
 
 module.exports = function Table({ arrayRecipes, category }) {
   return (
-    <div id="table">
+    <div className="tableCards">
       <h1 className="categoryTitle">
         {' '}
         {category}
