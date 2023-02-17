@@ -9,7 +9,9 @@ router
     res.status(200).renderComponent(Registration);
   })
   .post(async (req, res) => {
-    const { name, email, passwordOne, passwordTwo } = req.body;
+    const {
+      name, email, passwordOne, passwordTwo,
+    } = req.body;
     if (name && email && passwordOne && passwordOne === passwordTwo) {
       const user = await User.findOne({ where: { email } });
       if (!user) {

@@ -9,7 +9,9 @@ if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, email, password } = event.target;
+    const {
+      method, action, email, password,
+    } = event.target;
 
     const response = await fetch(action, {
       method,
@@ -36,8 +38,9 @@ if (regoForm) {
   regoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, name, email, passwordOne, passwordTwo } =
-      event.target;
+    const {
+      method, action, name, email, passwordOne, passwordTwo,
+    } = event.target;
 
     const res = await fetch(action, {
       method,
@@ -66,7 +69,6 @@ if (list) {
   list.addEventListener('click', async (event) => {
     event.preventDefault();
     const id = event.target.getAttribute('id');
-    
 
     const res1 = await fetch(`/home/${id}`);
 
