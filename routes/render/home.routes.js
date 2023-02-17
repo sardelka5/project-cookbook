@@ -73,33 +73,34 @@ router.get('/:id', async (req, res) => {
     // console.log(res.locals);
     // console.log(req.session)
     // res.locals.data = meals
-    console.log(res.locals.data);
+    
     const sortedMeals = meals
       .slice()
       .sort((a, b) => a.arringredient.length - b.arringredient.length);
 
     res
-      .status(200)
-      .renderComponent(
-        Table,
-        { arrayRecipes: sortedMeals, category: res.app.locals.data },
-        { htmlOnly: false },
-      );
+      .status(200).json({
+        html: res.renderComponent(
+          Table,
+          { arrayRecipes: sortedMeals, category: res.app.locals.data },
+          { htmlOnly: true },
+        ),
+      });
   }
 
   if (id === 'MaxToMin') {
-    console.log(res.locals.currentCategory);
     const sortedMeals = meals
       .slice()
       .sort((a, b) => b.arringredient.length - a.arringredient.length);
 
     res
-      .status(200)
-      .renderComponent(
-        Table,
-        { arrayRecipes: sortedMeals, category: res.app.locals.data },
-        { htmlOnly: false },
-      );
+      .status(200).json({
+        html: res.renderComponent(
+          Table,
+          { arrayRecipes: sortedMeals, category: res.app.locals.data },
+          { htmlOnly: true },
+        ),
+      });
   }
 
   if (id !== 'Random dishes' && id !== 'MaxToMin' && id !== 'MinToMax') {
@@ -137,12 +138,7 @@ router.get('/:id', async (req, res) => {
     res.app.locals.meals = result;
 
     res
-      .status(200)
-      .renderComponent(
-        Table,
-        { arrayRecipes: result, category: id },
-        { htmlOnly: false },
-      );
+      .status(200).json({ html: res.renderComponent(Table, { arrayRecipes: result, category: res.app.locals.data }, { htmlOnly: true }) });
   }
 
   if (id === 'Random dishes') {
@@ -172,13 +168,7 @@ router.get('/:id', async (req, res) => {
 
     res.app.locals.meals = result;
 
-    res
-      .status(200)
-      .renderComponent(
-        Table,
-        { arrayRecipes: result, category: id },
-        { htmlOnly: true },
-      );
+    res.status(200).json({ html: res.renderComponent(Table, { arrayRecipes: result, category: res.app.locals.data }, { htmlOnly: true }) });
   }
 });
 

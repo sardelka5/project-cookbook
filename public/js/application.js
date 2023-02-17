@@ -3,7 +3,7 @@ const logoForm = document.querySelector('#form-logo');
 const errorMessage = document.querySelector('#error');
 const list = document.querySelector('#list');
 const list2 = document.querySelector('#list2');
-const table = document.querySelector('#table');
+const mainContainer = document.querySelector('#main');
 
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
@@ -72,9 +72,9 @@ if (list) {
 
     const res1 = await fetch(`/home/${id}`);
 
-    const data = await res1.text();
-
-    table.innerHTML = data;
+    const { html } = await res1.json();
+    mainContainer.removeChild(mainContainer.lastChild);
+    mainContainer.insertAdjacentHTML('beforeend', html);
   });
 }
 
@@ -86,8 +86,8 @@ if (list2) {
 
     const res1 = await fetch(`/home/${id}`);
 
-    const data = await res1.text();
-
-    table.innerHTML = data;
+    const { html } = await res1.json();
+    mainContainer.removeChild(mainContainer.lastChild);
+    mainContainer.insertAdjacentHTML('beforeend', html);
   });
 }

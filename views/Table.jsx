@@ -2,8 +2,12 @@ const React = require('react');
 
 module.exports = function Table({ arrayRecipes, category, likes }) {
   return (
-    <div id="table">
-      <h1 className="categoryTitle"> {category} </h1>
+    <div className="tableCards">
+      <h1 className="categoryTitle">
+        {' '}
+        {category}
+        {' '}
+      </h1>
       <div className="container cards-container" id="blyodo">
         {arrayRecipes.length ? (
           arrayRecipes.map((recipe) => (

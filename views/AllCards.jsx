@@ -7,7 +7,7 @@ const Dropdowns = require('./Dropdowns');
 module.exports = function AllCards({ arrayRecipes, authUser, category }) {
   return (
     <Layout authUser={authUser}>
-      <div className="container">
+      <div className="container" id="main">
         <Dropdowns />
         <Table arrayRecipes={arrayRecipes} category={category} />
       </div>
