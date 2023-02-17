@@ -58,9 +58,11 @@ router.get('/', async (req, res) => {
   res.app.locals.data = 'Random dishes';
   res.app.locals.meals = result;
 
-  res
-    .status(200)
-    .renderComponent(AllCards, { arrayRecipes: result, authUser: user, category: 'Random dishes' });
+  res.status(200).renderComponent(AllCards, {
+    arrayRecipes: result,
+    authUser: user,
+    category: 'Random dishes',
+  });
 });
 
 router.get('/:id', async (req, res) => {
@@ -68,6 +70,10 @@ router.get('/:id', async (req, res) => {
   const { meals } = res.app.locals;
 
   if (id === 'MinToMax') {
+    // console.log(res.locals);
+    // console.log(req.session)
+    // res.locals.data = meals
+    
     const sortedMeals = meals
       .slice()
       .sort((a, b) => a.arringredient.length - b.arringredient.length);
@@ -161,6 +167,7 @@ router.get('/:id', async (req, res) => {
     });
 
     res.app.locals.meals = result;
+
     res.status(200).json({ html: res.renderComponent(Table, { arrayRecipes: result, category: res.app.locals.data }, { htmlOnly: true }) });
   }
 });
