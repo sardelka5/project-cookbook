@@ -9,9 +9,15 @@ if (main) {
     event.preventDefault();
     if (event.target.parentNode.parentNode.classList.contains('link-recipe')) {
       const id = event.target.parentNode.parentNode.getAttribute('id');
-      // console.log(event.target);
-      const response = await fetch(`/api/card/${id}`);
-      const oneRecipeObj = await response.json();
+
+      // const response = await fetch(`/api/card/${id}`);
+      // const oneRecipeObj = await response.json();
+
+      const response = fetch(`/api/card/${id}`)
+        .then((res3) => res3.json())
+        .catch((err) => console.log(err.message));
+
+      const oneRecipeObj = await response;
 
       cards.forEach((el) => el.classList.add('card-black'));
       body.classList.add('black-back');
