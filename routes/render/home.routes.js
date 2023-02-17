@@ -1,6 +1,9 @@
+'use strict';
+
 const router = require('express').Router();
 const AllCards = require('../../views/AllCards');
 const Table = require('../../views/Table');
+const fetch = require('node-fetch');
 // const { Card } = require('../../db/models');
 
 // router.get('/', async (req, res) => {
