@@ -3,13 +3,15 @@ const logoForm = document.querySelector('#form-logo');
 const errorMessage = document.querySelector('#error');
 const list = document.querySelector('#list');
 const list2 = document.querySelector('#list2');
-const table = document.querySelector('#table');
+const mainContainer = document.querySelector('#main');
 
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, email, password } = event.target;
+    const {
+      method, action, email, password,
+    } = event.target;
 
     const response = await fetch(action, {
       method,
@@ -36,8 +38,9 @@ if (regoForm) {
   regoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, name, email, passwordOne, passwordTwo } =
-      event.target;
+    const {
+      method, action, name, email, passwordOne, passwordTwo,
+    } = event.target;
 
     const res = await fetch(action, {
       method,
@@ -66,13 +69,12 @@ if (list) {
   list.addEventListener('click', async (event) => {
     event.preventDefault();
     const id = event.target.getAttribute('id');
-    
 
     const res1 = await fetch(`/home/${id}`);
 
-    const data = await res1.text();
-
-    table.innerHTML = data;
+    const { html } = await res1.json();
+    mainContainer.removeChild(mainContainer.lastChild);
+    mainContainer.insertAdjacentHTML('beforeend', html);
   });
 }
 
@@ -84,8 +86,8 @@ if (list2) {
 
     const res1 = await fetch(`/home/${id}`);
 
-    const data = await res1.text();
-
-    table.innerHTML = data;
+    const { html } = await res1.json();
+    mainContainer.removeChild(mainContainer.lastChild);
+    mainContainer.insertAdjacentHTML('beforeend', html);
   });
 }
