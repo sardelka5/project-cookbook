@@ -1,11 +1,17 @@
 const regoForm = document.querySelector('#form-rego');
 const logoForm = document.querySelector('#form-logo');
+const errorMessage = document.querySelector('#error');
+const list = document.querySelector('#list');
+const list2 = document.querySelector('#list2');
+const mainContainer = document.querySelector('#main');
 
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, email, password } = event.target;
+    const {
+      method, action, email, password,
+    } = event.target;
 
     const response = await fetch(action, {
       method,
@@ -23,10 +29,7 @@ if (logoForm) {
     if (data.message === 'ok') {
       window.location.assign('/home');
     } else {
-      const html = `<div>${data.message}</div>`;
-      logoForm.insertAdjacentHTML('beforeend', html);
-
-      //! можно добавить во вьюшку див и менять там иннерХТМЛ
+      errorMessage.innerText = data.message;
     }
   });
 }
@@ -35,7 +38,9 @@ if (regoForm) {
   regoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const { method, action, name, email, password } = event.target;
+    const {
+      method, action, name, email, passwordOne, passwordTwo,
+    } = event.target;
 
     const res = await fetch(action, {
       method,
@@ -45,7 +50,8 @@ if (regoForm) {
       body: JSON.stringify({
         name: name.value,
         email: email.value,
-        password: password.value,
+        passwordOne: passwordOne.value,
+        passwordTwo: passwordTwo.value,
       }),
     });
 
@@ -54,10 +60,34 @@ if (regoForm) {
     if (data.message === 'ok') {
       window.location.assign('/home');
     } else {
-      const html = `<div>${data.message}</div>`;
-      regoForm.insertAdjacentHTML('beforeend', html);
-
-      //! можно добавить во вьюшку див и менять там иннерХТМЛ
+      errorMessage.innerText = data.message;
     }
+  });
+}
+
+if (list) {
+  list.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const id = event.target.getAttribute('id');
+
+    const res1 = await fetch(`/home/${id}`);
+
+    const { html } = await res1.json();
+    mainContainer.removeChild(mainContainer.lastChild);
+    mainContainer.insertAdjacentHTML('beforeend', html);
+  });
+}
+
+if (list2) {
+  list2.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const id = event.target.getAttribute('id');
+
+    const res1 = await fetch(`/home/${id}`);
+
+    const { html } = await res1.json();
+    mainContainer.removeChild(mainContainer.lastChild);
+    mainContainer.insertAdjacentHTML('beforeend', html);
   });
 }

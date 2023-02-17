@@ -2,14 +2,21 @@
 const React = require('react');
 const Layout = require('./Layout');
 const Table = require('./Table');
-const Dropdowns = require('./Dropdowns');
 
-module.exports = function AllCards({ arrayRecipes, authUser, category }) {
+module.exports = function Favorites({
+  arrayRecipes,
+  authUser,
+  category,
+  likes,
+}) {
   return (
     <Layout authUser={authUser}>
       <div className="container" id="main">
-        <Dropdowns />
-        <Table arrayRecipes={arrayRecipes} category={category} />
+        <Table
+          arrayRecipes={arrayRecipes}
+          category="Favorite dishes"
+          likes={likes}
+        />
       </div>
     </Layout>
   );

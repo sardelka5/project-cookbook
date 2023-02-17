@@ -1,5 +1,5 @@
-'use strict';
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Card extends Model {
     /**
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         },
       },
-      name: {
+      dish: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Card',
-    }
+    },
   );
   return Card;
 };

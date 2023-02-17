@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js --ext js,json,jsx --ignore ./sessions"
+    "dev": "nodemon app.js --ext js,json,jsx --ignore ./sessions",
+    "db-create": "npx sequelize db:create",
+    "db-drop": "npx sequelize db:drop",
+    "db-migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate"
   },
   "keywords": [],
   "author": "",
