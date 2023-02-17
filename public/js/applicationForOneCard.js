@@ -18,6 +18,7 @@ if (main) {
         .catch((err) => console.log(err.message));
 
       const oneRecipeObj = await response;
+      console.log(oneRecipeObj);
 
       cards.forEach((el) => el.classList.add('card-black'));
       body.classList.add('black-back');

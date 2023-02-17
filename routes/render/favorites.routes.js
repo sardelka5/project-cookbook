@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Favorites = require('../../views/Favorites');
 const { Card } = require('../../db/models');
+const fetch = require('node-fetch');
 
 router.get('/', async (req, res) => {
   const { user } = res.locals;

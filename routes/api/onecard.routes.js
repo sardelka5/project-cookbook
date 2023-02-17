@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const OneCard = require('../../views/OneCard');
 const { Card } = require('../../db/models');
+const fetch = require('node-fetch');
 
 router.route('/:id').get(async (req, res) => {
   const { id } = req.params;
@@ -12,7 +13,7 @@ router.route('/:id').get(async (req, res) => {
     .catch((err) => console.log(err.message));
 
   const dataForOne = await response;
-
+  console.log(dataForOne);
   const oneRecipe = {
     img: dataForOne.meals[0].strMealThumb,
     name: dataForOne.meals[0].strMeal,
