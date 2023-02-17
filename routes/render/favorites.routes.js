@@ -12,7 +12,9 @@ router.get('/', async (req, res) => {
   for (let i = 0; i < favorites.length; i += 1) {
     const response = fetch(
       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${favorites[i].dish}`
-    ).then((res2) => res2.json());
+    )
+      .then((res2) => res2.json())
+      .catch((err) => console.log(err.message));
     arr.push(response);
   }
   const data = await Promise.all(arr);

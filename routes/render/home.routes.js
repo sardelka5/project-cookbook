@@ -32,9 +32,9 @@ router.get('/', async (req, res) => {
 
   const arrBlyodo = [];
   for (let i = 0; i < 8; i += 1) {
-    const response = fetch(
-      'https://www.themealdb.com/api/json/v1/1/random.php'
-    ).then((res1) => res1.json());
+    const response = fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then((res1) => res1.json())
+      .catch((err) => console.log(err.message));
     arrBlyodo.push(response);
   }
   const data = await Promise.all(arrBlyodo);
@@ -114,7 +114,10 @@ router.get('/:id', async (req, res) => {
       const number = arrmenu[i];
       const response1 = fetch(
         `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${number}`
-      ).then((res2) => res2.json());
+      )
+        .then((res2) => res2.json())
+        .catch((err) => console.log(err.message));
+
       arrBlyodo.push(response1);
     }
     const data = await Promise.all(arrBlyodo);
@@ -150,7 +153,10 @@ router.get('/:id', async (req, res) => {
     for (let i = 0; i < 8; i += 1) {
       const response = fetch(
         'https://www.themealdb.com/api/json/v1/1/random.php'
-      ).then((res3) => res3.json());
+      )
+        .then((res3) => res3.json())
+        .catch((err) => console.log(err.message));
+
       arrBlyodo.push(response);
     }
     const data = await Promise.all(arrBlyodo);
