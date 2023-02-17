@@ -3,7 +3,7 @@ const logoForm = document.querySelector('#form-logo');
 const errorMessage = document.querySelector('#error');
 const list = document.querySelector('#list');
 const list2 = document.querySelector('#list2');
-const blyodo = document.querySelector('#blyodo');
+const table = document.querySelector('#table');
 
 if (logoForm) {
   logoForm.addEventListener('submit', async (event) => {
@@ -65,14 +65,14 @@ if (regoForm) {
 if (list) {
   list.addEventListener('click', async (event) => {
     event.preventDefault();
-
     const id = event.target.getAttribute('id');
+    
 
     const res1 = await fetch(`/home/${id}`);
 
     const data = await res1.text();
 
-    blyodo.innerHTML = data;
+    table.innerHTML = data;
   });
 }
 
@@ -86,6 +86,6 @@ if (list2) {
 
     const data = await res1.text();
 
-    blyodo.innerHTML = data;
+    table.innerHTML = data;
   });
 }
