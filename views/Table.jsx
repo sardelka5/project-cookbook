@@ -58,7 +58,7 @@ module.exports = function Table({ arrayRecipes, category, likes }) {
                   )}
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">{recipe.strMeal}</h5>
+                  <h5 className="card-title titleCard">{recipe.strMeal}</h5>
                   <p className="card-text">{`Number of ingridients: ${recipe.arringredient.length}`}</p>
                   <p className="card-text">
                     {recipe.arringredient.length > 10
