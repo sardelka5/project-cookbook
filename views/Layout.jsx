@@ -15,31 +15,43 @@ module.exports = function Layout({ title, children, authUser }) {
         <script defer src="/js/applicationForLikesFav.js" />
         <title>{title}</title>
       </head>
-      <body>
+      <body className="mb-5">
         <div className="collapse" id="navbarToggleExternalContent">
           {authUser ? (
             <div className="bg-dark p-4">
               <h5 className="text-white h3">Hello, {`${authUser.name}`}</h5>
               <h5 className="text-white h4">
-                <a className="mainMenu" href="/home">Home</a>
+                <a className="mainMenu" href="/home">
+                  Home
+                </a>
               </h5>
               <h5 className="text-white h5">
-                <a className="mainMenu" href="/favorites">Favorites</a>
+                <a className="mainMenu" href="/favorites">
+                  Favorites
+                </a>
               </h5>
               <h5 className="text-white h5">
-                <a className="mainMenu" href="/logout">Log out</a>
+                <a className="mainMenu" href="/logout">
+                  Log out
+                </a>
               </h5>
             </div>
           ) : (
             <div className="bg-dark p-4">
               <h5 className="text-white h4">
-                <a className="mainMenu" href="/home">Home</a>
+                <a className="mainMenu" href="/home">
+                  Home
+                </a>
               </h5>
               <h5 className="text-white h5">
-                <a className="mainMenu" href="/registration">Sign up</a>
+                <a className="mainMenu" href="/registration">
+                  Sign up
+                </a>
               </h5>
               <h5 className="text-white h5">
-                <a className="mainMenu" href="/login">Log in</a>
+                <a className="mainMenu" href="/login">
+                  Log in
+                </a>
               </h5>
             </div>
           )}

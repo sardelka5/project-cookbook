@@ -11,11 +11,13 @@ module.exports = function Favorites({
 }) {
   return (
     <Layout authUser={authUser}>
-      <Table
-        arrayRecipes={arrayRecipes}
-        category="Favorite dishes"
-        likes={likes}
-      />
+      <div className="container" id="main">
+        <Table
+          arrayRecipes={arrayRecipes}
+          category="Favorite dishes"
+          likes={likes}
+        />
+      </div>
     </Layout>
   );
 };
