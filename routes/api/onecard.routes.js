@@ -6,7 +6,7 @@ router.route('/:id').get(async (req, res) => {
   const { id } = req.params;
 
   const response = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
   );
   const dataForOne = await response.json();
 
@@ -20,8 +20,8 @@ router.route('/:id').get(async (req, res) => {
 
   for (let j = 1; j < 21; j += 1) {
     if (
-      dataForOne.meals[0][`strIngredient${j}`] !== '' &&
-      dataForOne.meals[0][`strIngredient${j}`] !== null
+      dataForOne.meals[0][`strIngredient${j}`] !== ''
+      && dataForOne.meals[0][`strIngredient${j}`] !== null
     ) {
       oneRecipe.ingredients.push(dataForOne.meals[0][`strIngredient${j}`]);
     }
@@ -35,14 +35,14 @@ router.route('/:id').get(async (req, res) => {
     const html = res.renderComponent(
       OneCard,
       { oneRecipeObj: oneRecipe, dataFromBD },
-      { htmlOnly: true }
+      { htmlOnly: true },
     );
     res.json(html);
   } else {
     const html = res.renderComponent(
       OneCard,
       { oneRecipeObj: oneRecipe },
-      { htmlOnly: true }
+      { htmlOnly: true },
     );
     res.json(html);
   }

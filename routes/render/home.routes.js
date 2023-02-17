@@ -58,9 +58,11 @@ router.get('/', async (req, res) => {
   res.app.locals.data = 'Random dishes';
   res.app.locals.meals = result;
 
-  res
-    .status(200)
-    .renderComponent(AllCards, { arrayRecipes: result, authUser: user, category: 'Random dishes' });
+  res.status(200).renderComponent(AllCards, {
+    arrayRecipes: result,
+    authUser: user,
+    category: 'Random dishes',
+  });
 });
 
 router.get('/:id', async (req, res) => {
@@ -71,7 +73,7 @@ router.get('/:id', async (req, res) => {
     // console.log(res.locals);
     // console.log(req.session)
     // res.locals.data = meals
-    console.log(res.locals.data)
+    console.log(res.locals.data);
     const sortedMeals = meals
       .slice()
       .sort((a, b) => a.arringredient.length - b.arringredient.length);
@@ -136,7 +138,11 @@ router.get('/:id', async (req, res) => {
 
     res
       .status(200)
-      .renderComponent(Table, { arrayRecipes: result, category: id }, { htmlOnly: false });
+      .renderComponent(
+        Table,
+        { arrayRecipes: result, category: id },
+        { htmlOnly: false },
+      );
   }
 
   if (id === 'Random dishes') {
@@ -168,7 +174,11 @@ router.get('/:id', async (req, res) => {
 
     res
       .status(200)
-      .renderComponent(Table, { arrayRecipes: result, category: id }, { htmlOnly: false });
+      .renderComponent(
+        Table,
+        { arrayRecipes: result, category: id },
+        { htmlOnly: true },
+      );
   }
 });
 
