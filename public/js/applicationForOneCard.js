@@ -1,6 +1,7 @@
 const cardsContainer = document.querySelector('.cards-container');
 const body = document.querySelector('body');
 const cards = document.querySelectorAll('.card');
+const blyodo = document.querySelector('#blyodo');
 const main = document.querySelector('#main')
 
 if (main) {
@@ -14,7 +15,7 @@ if (main) {
 
       cards.forEach((el) => el.classList.add('card-black'));
       body.classList.add('black-back');
-      body.insertAdjacentHTML('afterend', oneRecipeObj);
+      body.insertAdjacentHTML('beforeend', oneRecipeObj);
 
       const oneCardJs = document.querySelector('.one-recipe');
       oneCardJs.addEventListener('click', (e) => {
@@ -72,6 +73,19 @@ if (main) {
           const response1 = await fetch(`/like/${id}`, { method: 'delete' });
           const result = await response1.json();
           if (result === 'ok') {
+
+           // const theme = e.target.parentNode.parentNode.parentNode.previousSibling.firstElementChild.innerHTML;
+            // if(theme === 'Favorite dishes') {
+                let card = document.querySelectorAll('.link-recipe');
+                card.forEach(el => {
+                  if(el.getAttribute('id') === id) {
+                    el.remove()
+                  }
+                })
+            // }
+            // e.target.classList.remove('btn-danger');
+            // e.target.classList.add('btn-outline-danger');
+
             console.log('сработало удаление');
 
             const likeConteinerOneCard = document.querySelector(
@@ -94,6 +108,7 @@ if (main) {
 
             // e.target.classList.remove('btn-danger');
             // e.target.classList.add('btn-outline-danger');
+
           }
         }
       });
